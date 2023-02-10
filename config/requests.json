@@ -1,0 +1,20 @@
+{
+  "config": {
+    "base_url": "http://localhost:9090",
+    "stats_folder": "/tmp/stats",
+    "auth_mechanism": "",
+    "api_key": "",
+    "cookies": {
+      "Cookie-1": ""
+    }
+  },
+  "requests": [{
+    "api": "csv_folder",
+    "method": "GET",
+    "query_params": [{
+      "key": "folder_name",
+      "value_type": "static",
+      "value": "%2Ftmp%2Fchaos-stats"
+    }]
+  }]
+}
