@@ -52,6 +52,7 @@ func (ast *ApiStore) FlushStats() (reqStats map[string]Stats, err error) {
 	)
 	ast.waitForPrevIteration()
 	ast.PrintStats()
+	ast.numOfReqs = 0
 	reqStats = make(map[string]Stats)
 
 	content = append(content, "Time,Experiment Name,Request Name,Status Code,Latency\n")
@@ -60,6 +61,7 @@ func (ast *ApiStore) FlushStats() (reqStats map[string]Stats, err error) {
 		reqStats[req.GetName()] = req.Stats
 		req.Stats = Stats{}
 		content = append(content, req.RawStats...)
+		req.RawStats = []string{}
 	}
 	os.MkdirAll(ast.Config.StatsFolder, os.ModePerm)
 	fileName := fmt.Sprintf("%s/%s.csv", ast.Config.StatsFolder, ast.expName)
